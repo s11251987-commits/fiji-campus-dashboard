@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiji Campus Bus & Weather Dashboard</title>
+
+<style>
+    /* Page styling */
+    body {
+        font-family: Arial, sans-serif;
+        background: #eaf4ff;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #004080;
+    }
+
+    .container {
+        max-width: 500px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    input, button {
+        width: 90%;
+        padding: 10px;
+        margin: 10px;
+        font-size: 16px;
+    }
+
+    button {
+        background: #0077cc;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #005fa3;
+    }
+
+    .result, .weather {
+        margin-top: 20px;
+        padding: 15px;
+        background: #f4f4f4;
+        border-radius: 8px;
+    }
+
+    /* Error message styling */
+    .error {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Fiji Campus Bus & Weather Dashboard</h1>
+
+    <!-- Input for bus fare budget -->
+    <input type="number" id="budget" placeholder="Enter your bus fare budget (FJD)">
+
+    <!-- Button to calculate bus rides -->
+    <button onclick="calculateRides()">Calculate Bus Rides</button>
+
+    <!-- Result or error message -->
+    <div class="result" id="result">
+        Number of rides: -
+    </div>
+
+    <!-- Weather forecast for Nadi -->
+    <div class="weather">
+        <h3>Today's Weather (Nadi)</h3>
+        <p>☀️ Sunny, 30°C</p>
+    </div>
+
+</div>
+
+<script>
+    // Function to calculate the number of bus rides
+    function calculateRides() {
+
+        // Get the value entered by the user
+        let budget = document.getElementById("budget").value;
+
+        // Check if the input is empty or negative
+        if (budget === "" || budget < 0) {
+            document.getElementById("result").innerHTML =
+                "<span class='error'>Please enter a valid positive dollar amount.</span>";
+            return;
+        }
+
+        // Each bus ride costs FJD 1.50
+        let rides = Math.floor(budget / 1.50);
+
+        // Display the number of rides
+        document.getElementById("result").innerHTML =
+            "Number of rides: " + rides;
+    }
+</script>
+
+</body>
+</html>
